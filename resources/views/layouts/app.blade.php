@@ -124,7 +124,6 @@
                 clearBtn: true,
                 format: 'mm-dd-yyyy'
             });
-
             $('.datepicker').change(function() {
                 $.fn.dataTable.ext.search.push(
                     function(settings, data, dataIndex) {
@@ -141,9 +140,6 @@
                         return false;
                     }
                 );
-            });
-
-            $('.datepicker').change(function() {
                 table.draw();
             });
             $('.client').on('change',function () {
