@@ -56,7 +56,37 @@
                             </div>
                         </div>
                     </div><br>
+                    <div class="flex-center">
+                        @if(isset($company))
+                            {{$company->name}} <strong> Users</strong>
+                        @else
+
+                        @endif
+                    </div>
+                    <br>
                     @if(isset($company))
+
+                        <table id="user" class="display" cellspacing="0" width="100%">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Mobile</th>
+                                <th>Joined date</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($user as $alluser)
+                                <tr>
+                                    <td style="text-align: center">{{ ucwords($alluser->name) }}</td>
+                                    <td style="text-align: center">{{$alluser->email}}</td>
+                                    <td style="text-align: center">{{$alluser->mobile}}</td>
+                                    <td style="text-align: center"><?php echo date_format($alluser->updated_at,'m-d-Y');?></td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+
                         <form class="form-horizontal" role="form" method="POST" action="/home/company/{{$company->id}}/update">
                             {{ csrf_field() }}
                             {{ method_field('PUT') }}
@@ -289,8 +319,6 @@
         </div>
     </div>
 </div>
-
-
 @endsection
 
 

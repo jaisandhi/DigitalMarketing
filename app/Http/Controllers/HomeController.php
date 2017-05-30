@@ -9,6 +9,7 @@ use App\Helpers\Helpers;
 use App\Models\IndustryType;
 use App\Http\Requests\CompanyFormRequest;
 use Auth;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -96,7 +97,8 @@ class HomeController extends Controller
     public function editcompany($id){
         $company = ClientBaseCompany::find($id);
         $industry_type = IndustryType::all();
-        return view('company.partials.add',compact('company','industry_type'));
+        $user = User::where('party_id',$id)->get();
+        return view('company.partials.add',compact('company','industry_type','user'));
     }
 
     /**
